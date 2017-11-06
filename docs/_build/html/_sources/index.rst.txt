@@ -10,6 +10,7 @@ Welcome to superlist's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   all-about-me
 
 
 Indices and tables
