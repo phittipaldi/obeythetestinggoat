@@ -13,6 +13,7 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.quit()
 
     def test_can_start_a_list_and_retrieve_it_later(self):
+
         self.browser.get('http://localhost:8000')
 
         # She notices the page title and header mention to-do lists
@@ -34,11 +35,17 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
 
         table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_element_by_tag_name('tr')
+        rows = self.browser.find_elements_by_tag_name("tr")
+        # rows = table.find_element_by_tag_name('tr')
 
         self.assertTrue(
-            any(row.text == 'Buy peacock feathers' for row in rows)
+            any(row.text == '1: Buy peacock feathers' for row in rows),
+            "New to-do item did not appear. Cont. were:{}".format(table.text)
         )
+
+        self.assertIn(
+            '2: Use peacock feathers to make a fly',
+            [row.text for row in rows])
 
         self.fail('Finish the test!')
 
